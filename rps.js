@@ -14,8 +14,13 @@ function playRound(playerSelection, computerSelection) {
         return "It's a tie!"
     }
 }
+function game() {
+    for (let i = 0; i < 5; i++) {
+        playerSelection = prompt("Enter your choice:").toLowerCase();
+        computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
+        await(sleep(1))
+    }
+}
 
-const playerSelection = "rock"
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
-
+game();
