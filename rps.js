@@ -7,12 +7,20 @@ function playRound(playerSelection, computerSelection) {
     let win = (computerSelection + 1) % 3;
     let lose = computerSelection ? computerSelection - 1 : 2;
     if (playerIdx === win) {
-        return `You Win! ${playerSelection} beats ${choices[computerSelection]}`;
+        result.textContent = `You Win! ${playerSelection} beats ${choices[computerSelection]}`;
+        playerScore.textContent = (parseInt(playerScore.textContent) + 1).toString();
     } else if (playerIdx === lose) {
-        return `You Lose! ${choices[computerSelection]} beats ${playerSelection}`;
+        result.textContent = `You Lose! ${choices[computerSelection]} beats ${playerSelection}`;
+        computerScore.textContent = (parseInt(computerScore.textContent) + 1).toString();
     } else {
-        return "It's a tie!";
+        result.textContent = `It's a tie! You both chose ${playerSelection}`;
     }
+    if (playerScore.textContent === '5' && computerScore.textContent < '5') {
+        winner.textContent = 'You beat the computer!';
+    } else if (computerScore.textContent === '5' && playerScore.textContent < '5') {
+        winner.textContent = 'The computer beat you!';
+    }
+
 }
 
 const rockbtn = document.getElementById('rockbtn');
@@ -21,4 +29,9 @@ const scissorsbtn = document.getElementById('scissorsbtn');
 
 rockbtn.addEventListener("click", () => playRound('rock', getComputerChoice()));
 paperbtn.addEventListener("click", () => playRound('paper', getComputerChoice()));
-scissorsbtn.addEventListener("click", () => playRound('scissor', getComputerChoice()));
+scissorsbtn.addEventListener("click", () => playRound('scissors', getComputerChoice()));
+
+const result = document.querySelector('.result');
+const playerScore = document.getElementById('playerScore');
+const computerScore = document.getElementById('computerScore');
+const winner = document.querySelector('.winner');
