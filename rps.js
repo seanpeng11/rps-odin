@@ -11,16 +11,14 @@ function playRound(playerSelection, computerSelection) {
     } else if (playerIdx === lose) {
         return `You Lose! ${choices[computerSelection]} beats ${playerSelection}`;
     } else {
-        return "It's a tie!"
-    }
-}
-function game() {
-    for (let i = 0; i < 5; i++) {
-        playerSelection = prompt("Enter your choice:").toLowerCase();
-        computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-        await(sleep(1))
+        return "It's a tie!";
     }
 }
 
-game();
+const rockbtn = document.getElementById('rockbtn');
+const paperbtn = document.getElementById('paperbtn');
+const scissorsbtn = document.getElementById('scissorsbtn');
+
+rockbtn.addEventListener("click", () => playRound('rock', getComputerChoice()));
+paperbtn.addEventListener("click", () => playRound('paper', getComputerChoice()));
+scissorsbtn.addEventListener("click", () => playRound('scissor', getComputerChoice()));
